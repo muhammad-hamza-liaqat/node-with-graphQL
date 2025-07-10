@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./config/connection.mongoose")
 
 const express = require("express");
 const { json } = require("express");
