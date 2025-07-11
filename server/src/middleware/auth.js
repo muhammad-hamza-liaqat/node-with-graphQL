@@ -13,7 +13,7 @@ const isAuthenticated = (resolver) => {
 
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log("user decoded from JWT --->", decoded);
+      // console.log("user decoded from JWT --->", decoded);
       context.user = decoded;
       return resolver(parent, args, context, info);
     } catch (error) {
