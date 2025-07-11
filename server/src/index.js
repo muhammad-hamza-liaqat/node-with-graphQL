@@ -1,13 +1,12 @@
 require("dotenv").config();
-require("./config/connection.mongoose")
+require("./config/connection.mongoose");
 
 const express = require("express");
 const { json } = require("express");
 const cors = require("cors");
 
-
 const createApolloGraphQL = require("./config/graphqlConfig");
-const { expressMiddleware } = require('@apollo/server/express4');
+const { expressMiddleware } = require("@apollo/server/express4");
 
 const PORT = process.env.PORT || 8000;
 const app = express();
@@ -23,10 +22,10 @@ app.get("/", (req, res) => {
   const apolloServer = await createApolloGraphQL();
 
   app.use(
-    '/graphql',
+    "/graphql",
     json(),
     expressMiddleware(apolloServer, {
-      context: async ({ req }) => ({})
+      context: async ({ req }) => ({ req }),
     })
   );
 
