@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../../models/user.model");
 const { hashPassword, comparePassword } = require("../../utils/bcrypt");
 
-
 module.exports = {
   Query: {
     getUsers: async () => {
@@ -23,6 +22,7 @@ module.exports = {
       if (userExist) {
         throw new Error("User Already Exist");
       }
+    //   console.log("bcrypts.js--->", process.env.SALT_ROUNDS);
 
       const hashedPassword = await hashPassword(password);
 
@@ -40,6 +40,12 @@ module.exports = {
     // login mutation
     login: async (_, { input }) => {
       const { email, password } = input;
+    //   console.log(
+    //     "JWT--->",
+    //     process.env.JWT_SECRET,
+    //     process.env.JWT_EXPIRES_IN
+    //   );
+    //   console.log("bcrypts.js--->", process.env.SALT_ROUNDS);
 
       const user = await User.findOne({ email });
       if (!user) {
@@ -61,6 +67,6 @@ module.exports = {
         user,
         token,
       };
-    }
-  }
+    },
+  },
 };
