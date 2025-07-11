@@ -6,7 +6,7 @@ const { json } = require("express");
 const cors = require("cors");
 
 
-const createApolloGraphQL = require("./config/graphql/graphqlConfig");
+const createApolloGraphQL = require("./config/graphqlConfig");
 const { expressMiddleware } = require('@apollo/server/express4');
 
 const PORT = process.env.PORT || 8000;
