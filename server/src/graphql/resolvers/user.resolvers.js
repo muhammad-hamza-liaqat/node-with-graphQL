@@ -8,7 +8,6 @@ const { isAuthenticated } = require("../../middleware/auth");
 module.exports = {
   Query: {
     getUserProfile: isAuthenticated(async (_, __, { req }) => {
-      console.log(req.user)
       const user = await User.findById(req?.user?._id).populate("wallet");
       if (!user) {
         throw new Error("No such user exists");
@@ -48,5 +47,19 @@ module.exports = {
 
       return { message: "Temporary password sent to your email." };
     },
+
+    updateUserName: isAuthenticated(async (_, { name }, { req }) => {
+      const userId = req?.user?._id;
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error("no such user exist");
+      }
+      user.name = name;
+      await user.save();
+      return {
+        message: "User updated successfully",
+        user,
+      };
+    }),
   },
 };

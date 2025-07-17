@@ -4,7 +4,7 @@ module.exports = gql`
   type Wallet {
     _id: ID!
     userId: ID!
-    balance: Float!
+    balance: Float
     currency: String
     createdAt: String
     updatedAt: String
@@ -17,5 +17,6 @@ module.exports = gql`
   }
   extend type Mutation {
     requestResetPassword(email: String!): SuccessResponse
+    updateUserName(name: String!): UpdateUserResponse
   }
 `;

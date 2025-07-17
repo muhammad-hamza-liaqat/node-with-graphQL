@@ -29,6 +29,11 @@ module.exports = gql`
     message: String!
   }
 
+  type UpdateUserResponse {
+    message: String!
+    user: User!
+  }
+
   type Query {
     getUsers: [User]
     getUserById(id: ID!): User
