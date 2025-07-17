@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const User = require("../../models/user.model");
+const UserWallet = require("../../models/userWallet.model");
 const { hashPassword, comparePassword } = require("../../utils/bcrypt");
 const { isAuthenticated } = require("../../middleware/auth");
 
@@ -33,6 +34,12 @@ module.exports = {
         password: hashedPassword,
       });
 
+      await newUser.save();
+
+      const wallet = await UserWallet.create({
+        userId: newUser?._id,
+      });
+      newUser.wallet = wallet?._id;
       await newUser.save();
 
       return { message: "User registered successfully" };
