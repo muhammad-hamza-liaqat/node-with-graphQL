@@ -1,10 +1,9 @@
-const { ApolloServer } = require('@apollo/server');
-const { typeDefs, resolvers } = require('../graphql');
+const { ApolloServer } = require("@apollo/server");
+const schema = require("../graphql/index")
 
 const createApolloGraphQL = async () => {
   const server = new ApolloServer({
-    typeDefs,
-    resolvers
+    schema,
   });
   await server.start();
   return server;
