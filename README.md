@@ -48,7 +48,7 @@ server/
 1. **Clone the repository:**
 
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/muhammad-hamza-liaqat/node-with-graphQL
    cd graphql/server
    ```
 
@@ -82,7 +82,8 @@ server/
    ```
 
 5. **Access GraphQL Playground:**
-   - Visit `http://localhost:4000/graphql` in your browser.
+   - Visit `http://localhost:8000/graphql` in your browser.
+   - Visit `http://localhost:8000/` in your browser to check server is up or not!.
 
 ## Scripts
 
