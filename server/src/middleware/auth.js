@@ -14,7 +14,7 @@ const isAuthenticated = (resolver) => {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       // console.log("user decoded from JWT --->", decoded);
-      context.user = decoded;
+      context.req.user = decoded;
       return resolver(parent, args, context, info);
     } catch (error) {
       throw new AuthenticationError("Invalid or expired token");

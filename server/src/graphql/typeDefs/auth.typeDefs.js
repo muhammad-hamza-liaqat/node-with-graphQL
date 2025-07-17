@@ -5,6 +5,8 @@ module.exports = gql`
     _id: ID!
     name: String!
     email: String!
+    createdAt: String
+    updatedAt: String
   }
 
   input SignupInput {
