@@ -17,6 +17,7 @@ module.exports = {
   },
 
   Mutation: {
+    // requestResetPassword Api
     requestResetPassword: async (_, { email }) => {
       const user = await User.findOne({ email });
       if (!user) {
@@ -48,6 +49,7 @@ module.exports = {
       return { message: "Temporary password sent to your email." };
     },
 
+    // updateUserProfile Api
     updateUserName: isAuthenticated(async (_, { name }, { req }) => {
       const userId = req?.user?._id;
       const user = await User.findById(userId);
