@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require("uuid");
 
 const User = require("../../models/user.model");
+const UserWallet = require("../../models/userWallet.model");
 const { hashPassword } = require("../../utils/bcrypt");
 const sendEmail = require("../../utils/email/sendEmail");
 const { isAuthenticated } = require("../../middleware/auth");
@@ -61,6 +62,23 @@ module.exports = {
       return {
         message: "User updated successfully",
         user,
+      };
+    }),
+
+    deleteUser: isAuthenticated(async (_, args, { req }) => {
+      const userId = req?.user?._id;
+      // console.log(userId);
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error("no such user exist!");
+      }
+      if (user?.wallet) {
+        await UserWallet.findByIdAndDelete(user.wallet);
+      }
+      await User.findByIdAndDelete(userId);
+      return {
+        // success: true,
+        message: "User deleted successfully!",
       };
     }),
   },
