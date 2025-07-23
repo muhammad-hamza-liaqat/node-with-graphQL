@@ -18,5 +18,6 @@ module.exports = gql`
   extend type Mutation {
     requestResetPassword(email: String!): SuccessResponse
     updateUserName(name: String!): UpdateUserResponse
+    deleteUser: SuccessResponse
   }
 `;
